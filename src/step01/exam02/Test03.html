@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+function Calculator03() {
+	this.result = 0;
+}
+
+Calculator03.prototype.init = function(value){
+	this.result = value;
+};
+
+Calculator03.prototype.plus = function(value){
+	this.result += value;
+};
+Calculator03.prototype.minus = function(value){
+	this.result -= value;
+};
+Calculator03.prototype.multiple = function(value){
+	this.result *= value;
+};
+Calculator03.prototype.divide = function(value){
+	this.result /= value;
+};
+
+
+var calc1 = new Calculator03();
+var calc2 = new Calculator03();
+
+calc1.plus(30);
+calc2.multiple(3);
+
+calc1.minus(4);
+calc2.minus(6);
+
+calc1.multiple(7);
+calc2.divide(3);
+
+console.log(calc1.result);
+console.log(calc2.result);
+</script>
+</body>
+</html>
