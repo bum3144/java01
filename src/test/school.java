@@ -33,6 +33,31 @@ public class school {
 	
 	
 	
+	private static void main(String[] args){
+		
+		
+	do{
+		String[] values = promptCommand();
+		if("add".equals(values[0])){
+			
+		}else if("list".equals(values[0])){
+			
+		}else if("delete".equals(values[0])){
+			
+		}else if("update".equals(values[0])){
+			
+		}else if("save".equals(values[0])){
+			
+		}else if("load".equals(values[0])){
+			
+		}else if("quit".equals(values[0])){
+			break;
+		}else{
+			System.out.println("사용할수 없는 명령입니다.");
+		}
+	}while(true);
 	
+	scanner.close();
+	}
 	
 }
