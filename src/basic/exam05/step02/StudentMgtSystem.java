@@ -1,10 +1,9 @@
-package test;
+package basic.exam05.step02;
 
-/* FileReader 사용
- * - 문자 데이터를 읽어들일 때 사용하는 클래스
- * - 문자 데이터 읽기에 관련된 메서드가 들어 있다.
- * - 바이너리 데이터(메모장에서 편집 불가 데이터)의 읽기는 
- *  FileInputStream 클래스 사용
+/* 각 기능 별로 Control 클래스 분리
+ * - 사용자가 입력한 데이터를 가공하여 Dao에게 전달
+ * - Dao가 리턴한 데이터를 가공하여 Boundary에게 전달
+ * - 일단, 현재는 Control이 Dao와 Boundary 역학을 겸한다. 
  * 
  */
 import java.util.Scanner;
@@ -13,31 +12,22 @@ public class StudentMgtSystem {
 	static Scanner scanner = new Scanner(System.in);
 	
 	private static String promptMenu() {
-		System.out.print("명령을 입력>");
+		System.out.print("메뉴>");
 		return scanner.nextLine().toLowerCase(); 
-		
 	}
 	
 	public static void main(String[] args) {
 		do {
-
-			System.out.println("┌─────┐");
-			System.out.println("│1 학생관리│");
-			System.out.println("│2 점수관리│");
-			System.out.println("│q 종료    │");
-			System.out.println("└─────┘");
-			System.out.println();
-			
 			String menu = promptMenu();
+			
 			if ("1".equals(menu)) {
-				StudentControl.member();
+				StudentControl.execute();
 			} else if ("2".equals(menu)) {
 				StudentScoreControl.execute();
 			} else if ("list".equals(menu)) {
 				System.out.println("1 학생관리");
 				System.out.println("2 점수관리");
 				System.out.println("q 종료");
-
 			} else if ("q".equals(menu)) {
 				break;
 			} else {
@@ -48,10 +38,6 @@ public class StudentMgtSystem {
 
 		scanner.close();
 	}
-
-
-
-
 }
 
 
