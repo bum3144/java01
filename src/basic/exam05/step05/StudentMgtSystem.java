@@ -1,4 +1,4 @@
-package basic.exam05.step04;
+package basic.exam05.step05;
 
 /* 
  * 
@@ -17,11 +17,16 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-/* Frame에 들어갈 화면 제작
- * 1) MenuPanel: 메뉴 출력 화면
- * 2) StudentPanel: 학생 관리 화면
- * 3) ScorePanel: 점수 관리 화면
+/* 상속
+ * 1) specialization 
+ * - 수퍼클래스로부터 상속받아서 기능을 덧붙임 => 특화시킴.
  * 
+ *  2) generalization
+ *  - 서브클래스들의 공통점을 찾아 수퍼클래스로 정의한다.
+ *  - 그리고 수퍼클래스를 상속받는다.
+ *  
+ *  목표: ScorePanel, StudentPanel의 공통점을 찾아 ContentPanel로 정의
+ *  
  * 
  */
 @SuppressWarnings("serial")

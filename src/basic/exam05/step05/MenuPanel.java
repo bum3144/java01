@@ -1,4 +1,4 @@
-package basic.exam05.step04;
+package basic.exam05.step05;
 
 import java.awt.Button;
 import java.awt.Panel;
