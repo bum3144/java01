@@ -1,12 +1,13 @@
 package test;
 
-public class StudentScore {
+public class SC {
+
  String name;
  int kor;
  int eng;
  int math;
  
-public StudentScore(String name) {
+public SC(String name) {
 	this.name = name;
 }
 

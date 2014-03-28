@@ -1,68 +1,37 @@
 package test;
 
-/* FileReader 사용
- * - 문자 데이터를 읽어들일 때 사용하는 클래스
- * - 문자 데이터 읽기에 관련된 메서드가 들어 있다.
- * - 바이너리 데이터(메모장에서 편집 불가 데이터)의 읽기는 
- *  FileInputStream 클래스 사용
- * 
- */
 import java.util.Scanner;
 
 public class StudentMgtSystem {
-	static Scanner scanner = new Scanner(System.in);
-	
-	private static String promptMenu() {
-		System.out.print("명령을 입력>");
-		return scanner.nextLine().toLowerCase(); 
-		
-	}
-	
+
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
 		do {
-
-			System.out.println("┌─────┐");
-			System.out.println("│1 학생관리│");
-			System.out.println("│2 점수관리│");
-			System.out.println("│q 종료    │");
-			System.out.println("└─────┘");
-			System.out.println();
-			
-			String menu = promptMenu();
-			if ("1".equals(menu)) {
-				StudentControl.member();
-			} else if ("2".equals(menu)) {
-				StudentScoreControl.execute();
-			} else if ("list".equals(menu)) {
-				System.out.println("1 학생관리");
-				System.out.println("2 점수관리");
-				System.out.println("q 종료");
-
-			} else if ("q".equals(menu)) {
+			System.out.println("명령>");
+			String input = scanner.nextLine();
+			String[] values = input.split(" ");
+			if ("add".equals(values[0])) {
+				String[] data = values[1].split(",");
+				System.out.println("이름 : " + data[0]);
+				System.out.println("국어 : " + data[1]);
+				System.out.println("영어 : " + data[2]);
+				System.out.println("수학 : " + data[3]);
+				System.out.println("등록하시겠습니까?(y/n)");
+				input = scanner.nextLine();
+				if ("y".equals(input.toLowerCase())) {
+					System.out.println("등록되었습니다.");
+				} else {
+					System.out.println("취소되었다!");
+				}
+			} else if ("quit".equals(values[0])) {
+				System.out.println("프로그램이 종료되었습니다.");
 				break;
-			} else {
-				System.out.println("없는 메뉴입니다.");
-			}
-			
-		} while(true);
 
+			} else {
+				System.out.println("잘못된 명령어입니다.");
+			}
+		} while (true);
 		scanner.close();
 	}
 
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

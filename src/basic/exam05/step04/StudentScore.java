@@ -1,10 +1,10 @@
-package basic.exam04.step06;
+package basic.exam05.step04;
 
 /* 콤마(,)로 구분된 문자열 데이터(comma seperated value; csv)로부터 
  * 인스턴스 생성하기 
  * - 클래스 메서드(static 메서드)의 활용 사례 공부
  * - 데이터 항목이 추가되거나, 문자열의 표현 순서가 바뀌더라도 
- *   소스코드를 유지보수하기 쉽다. 
+ *   소스코드를 유지보수하기 쉽다.
  */
 public class StudentScore {
 	String name;

@@ -6,19 +6,29 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class StudentScoreControl {
-	
+
+public class StC {
+
+
 	static Scanner scanner;
-	
-	static{
-		scanner = StudentMgtSystem.scanner;
-	}
 	
 	// ArrayList에 저장할 인스턴스의 타입을 지정 
 	private static ArrayList<StudentScore> scoreList 
 												= new ArrayList<StudentScore>();
 	
-	public static void executeAdd(final String value) {
+	
+	static{
+		scanner = StM.scanner;
+	}
+	
+	private static String[] promptCommand() {
+		System.out.print("점수관리>");
+		String input = scanner.nextLine(); 
+		
+		return input.split(" ");
+	}
+	
+	private static void executeAdd(final String value) {
 		String input;
 		
 		StudentScore score = StudentScore.fromCSV(value);
@@ -48,7 +58,7 @@ public class StudentScoreControl {
 		}
 	}
 	
-	public static void executeDelete(int no) {
+	private static void executeDelete(int no) {
 	  if (no >= 0 && no < scoreList.size()) {
 	  	scoreList.remove(no);
 	  	System.out.println("삭제하였습니다.");
@@ -57,7 +67,7 @@ public class StudentScoreControl {
 	  }
   }
 	
-	public static void executeUpdate(int no) {
+	private static void executeUpdate(int no) {
 		if (no >= 0 && no < scoreList.size()) {
 			StudentScore score = scoreList.get(no);
 			System.out.print("이름(" + score.name + "):");
@@ -89,7 +99,7 @@ public class StudentScoreControl {
 		}
   }
 	
-	public static void executeSave() {
+	private static void executeSave() {
 		try {
 			FileWriter out = new FileWriter("student.data");
 			for(StudentScore score : scoreList) {
@@ -102,7 +112,7 @@ public class StudentScoreControl {
 		}
 	}
 	
-	public static void executeLoad() {
+	private static void executeLoad() {
 		try {
 			FileReader in = new FileReader("student.data");
 			Scanner s = new Scanner(in);
@@ -120,8 +130,6 @@ public class StudentScoreControl {
 			ex.printStackTrace();
 		}
 	}
-		
-	
 	
 	public static void execute() {
 		do {
@@ -146,16 +154,8 @@ public class StudentScoreControl {
 			}
 			
 		} while(true);
+		scanner.close();
+}
 
-	}
-	
-	
-	private static String[] promptCommand() {
-		System.out.print("점수관리>");
-		String input = scanner.nextLine(); 
-		
-		return input.split(" ");
-	}
-	
 	
 }
