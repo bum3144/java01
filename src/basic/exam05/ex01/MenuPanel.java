@@ -1,11 +1,9 @@
-package basic.exam05.step05;
+package basic.exam05.ex01;
 
 import java.awt.Button;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JOptionPane;
 
 @SuppressWarnings("serial")
 public class MenuPanel extends Panel implements ActionListener {
@@ -24,7 +22,7 @@ public class MenuPanel extends Panel implements ActionListener {
 		add(btnScoreMgt);	
 	}
 	
-
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnStudentMgt) {
 			parent.changePanel(StudentMgtSystem.STUDENT_PANEL);

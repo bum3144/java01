@@ -1,4 +1,4 @@
-package basic.exam05.step05;
+package basic.exam05.ex01;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -31,8 +31,7 @@ public class ContentPanel extends Panel implements ActionListener{
 		btnBack.addActionListener(this);
 	}
 
-
-
+	
   public void actionPerformed(ActionEvent e) {
 	  parent.changePanel(StudentMgtSystem.MENU_PANEL);
 	  
