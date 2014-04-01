@@ -13,119 +13,102 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-
 @SuppressWarnings("serial")
 public class StudentPanel extends ContentPanel {
-	StudentControl controller = new StudentControl();
-	
-	List listView = new List(){
-		public Dimension getPreferredSize() {
-			return new Dimension(300, 400);
-		};
-	};
-	
-	Panel detailView = new Panel(new FlowLayout(FlowLayout.LEFT));
-	TextField tfName = new TextField(10);
-	TextField tfAge = new TextField(3);
-	TextField tfTel = new TextField(15);
-	TextField tfEmail = new TextField(20);
-	TextField tfAddr = new TextField(20);
-	Panel newButtonBar;
-	Panel detailButtonBar;
-	Button btnAdd = new Button("등록");
-	Button btnUpdate = new Button("변경");
-	Button btnDelete = new Button("삭제");
-	Button btnCancel = new Button("취소");
-	
-	int selectedIndex = -1;
-	
+	StudentControl	controller	 = new StudentControl();
+
+	List	         listView	     = new List() {
+		                             public Dimension getPreferredSize() {
+			                             return new Dimension(400, 400);
+		                             };
+	                             };
+
+	Panel	         detailView	   = new Panel(new FlowLayout(FlowLayout.LEFT));
+	TextField	     tfName	       = new TextField(10);
+	TextField	     tfTeacher	   = new TextField(10);
+	TextField	     tfStartDate	 = new TextField(20);
+	TextField	     tfEndDate	   = new TextField(20);
+	Choice	       room	         = new Choice();	                             // 강의실
+	Choice	       adm	         = new Choice();	                             // 관리자
+	Panel	         newButtonBar;
+	Panel	         detailButtonBar;
+	Button	       btnAdd	       = new Button("등록");
+	Button	       btnUpdate	   = new Button("변경");
+	Button	       btnDelete	   = new Button("삭제");
+	Button	       btnCancel	   = new Button("취소");
+
+	int	           selectedIndex	= -1;
+
 	public StudentPanel() {
-		super("학생관리");
-		
+		super("숙 제");
+
 		listView.setMultipleMode(false);
 		listView.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				Student s = Student.fromCSV(
-						listView.getItem(
-								listView.getSelectedIndex()));
+				Student s = Student.fromCSV(listView.getItem(listView
+				    .getSelectedIndex()));
 				tfName.setText(s.name);
-				tfAge.setText(Integer.toString(s.age));
-				tfTel.setText(s.tel);
-				tfEmail.setText(s.email);
-				tfAddr.setText(s.address);
+				tfTeacher.setText(s.teacher);
+				tfStartDate.setText(s.startDate);
+				tfEndDate.setText(s.endDate);
 				
+				room.select(s.room);
+				adm.select(s.adm);
+
 				newButtonBar.setVisible(false);
 				detailButtonBar.setVisible(true);
 				StudentPanel.this.validate();
-				
+
 				selectedIndex = listView.getSelectedIndex();
 			}
 		});
 		content.add(listView);
-		
-		detailView.setPreferredSize(new Dimension(300,400));
-		
+
+		detailView.setPreferredSize(new Dimension(300, 400));
+
 		Panel rowPane = new Panel(new FlowLayout(FlowLayout.LEFT));
 		rowPane.setPreferredSize(new Dimension(290, 50));
 		rowPane.add(createLabel("과목"));
 		rowPane.add(tfName);
 		detailView.add(rowPane);
-		
+
 		rowPane = createRowPane();
 		rowPane.add(createLabel("강사"));
-		rowPane.add(tfAge);
+		rowPane.add(tfTeacher);
 		detailView.add(rowPane);
-		
+
 		rowPane = createRowPane();
 		rowPane.add(createLabel("시작일"));
-		rowPane.add(tfTel);
+		rowPane.add(tfStartDate);
 		detailView.add(rowPane);
-		
+
 		rowPane = createRowPane();
 		rowPane.add(createLabel("종료일"));
-		rowPane.add(tfEmail);
+		rowPane.add(tfEndDate);
 		detailView.add(rowPane);
-		
-		
-		
-		Label lid = new Label("교실 : ", Label.LEFT);
-		Choice room = new Choice();
+
+		rowPane = createRowPane();
+		rowPane.add(createLabel("교실 : "));
 		room.add("3-1");
 		room.add("3-2");
 		room.add("3-3");
 		room.add("4-1");
 		room.add("4-2");
-		room.add("4-3");		
-		room.setSize(100,50);
-		room.setLocation(100,70);
+		room.add("4-3");
+		rowPane.add(room);
+		detailView.add(rowPane);
 
-		detailView.add(lid);
-		
-		Label lid2 = new Label("관리자 : ", Label.LEFT);
-		Choice adm = new Choice();
+		rowPane = createRowPane();
+		rowPane.add(createLabel("관리자 : "));
 		adm.add("Park");
 		adm.add("Kim");
 		adm.add("Yoon");
-		room.setSize(100,50);
-		room.setLocation(100,80);
-		
-
-		detailView.add(lid2);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		rowPane = createRowPane();
-		rowPane.add(createLabel("주소"));
-		rowPane.add(tfAddr);
+		adm.add("Hong");
+		adm.add("choi");
+		rowPane.add(adm);
 		detailView.add(rowPane);
-		
+
 		newButtonBar = createRowPane();
 		newButtonBar.add(btnAdd);
 		btnAdd.addActionListener(new ActionListener() {
@@ -133,33 +116,36 @@ public class StudentPanel extends ContentPanel {
 			public void actionPerformed(ActionEvent e) {
 				Student s = new Student();
 				s.name = tfName.getText();
-				s.age = Integer.parseInt(tfAge.getText());
-				s.tel = tfTel.getText();
-				s.email = tfEmail.getText();
-				s.address = tfAddr.getText();
-				
+				s.teacher = tfTeacher.getText();
+				s.startDate = tfStartDate.getText();
+				s.endDate = tfEndDate.getText();
+				s.room = room.getSelectedItem();
+				s.adm = adm.getSelectedItem();
+
 				controller.add(s);
 				listView.add(s.toString());
 				clearForm();
 			}
 		});
 		detailView.add(newButtonBar);
-		
+
 		detailButtonBar = createRowPane();
 		detailButtonBar.setVisible(false);
 		detailButtonBar.add(btnUpdate);
 		detailButtonBar.add(btnDelete);
 		detailButtonBar.add(btnCancel);
-		
+
 		btnUpdate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Student s = new Student();
 				s.name = tfName.getText();
-				s.age = Integer.parseInt(tfAge.getText());
-				s.tel = tfTel.getText();
-				s.email = tfEmail.getText();
-				s.address = tfAddr.getText();
+				s.teacher = tfTeacher.getText();
+				s.startDate = tfStartDate.getText();
+				s.endDate = tfEndDate.getText();
+
+				s.room = room.getSelectedItem();
+				s.adm = adm.getSelectedItem();
 				
 				controller.update(selectedIndex, s);
 				listView.replaceItem(s.toString(), selectedIndex);
@@ -185,71 +171,41 @@ public class StudentPanel extends ContentPanel {
 			}
 		});
 		detailView.add(detailButtonBar);
-		
-		
-		
+
 		content.add(detailView);
-		
-		
+
 		controller.load();
 		displayList();
 	}
-	
+
 	private void clearForm() {
-    tfName.setText("");
-    tfAge.setText("");
-    tfTel.setText("");
-    tfEmail.setText("");
-    tfAddr.setText("");
-  }
-	
+		tfName.setText("");
+		tfTeacher.setText("");
+		tfStartDate.setText("");
+		tfEndDate.setText("");
+		room.select(0);
+		adm.select(0);
+	}
+
 	private void displayList() {
-	  for (Student student : controller.studentList) {
-	  	listView.add(student.toString());
-	  }
-  }
+		for (Student student : controller.studentList) {
+			listView.add(student.toString());
+		}
+	}
 
 	private Panel createRowPane() {
 		Panel rowPane = new Panel(new FlowLayout(FlowLayout.LEFT));
 		rowPane.setPreferredSize(new Dimension(290, 50));
 		return rowPane;
 	}
-	
+
 	private Label createLabel(String title) {
 		Label label = new Label(title);
 		label.setPreferredSize(new Dimension(70, 30));
 		return label;
 	}
-	
+
 	public void save() {
 		controller.save();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
