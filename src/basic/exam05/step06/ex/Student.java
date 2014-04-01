@@ -1,4 +1,4 @@
-package basic.exam05.ex01;
+package basic.exam05.step06.ex;
 
 public class Student {
 	String 		name;
@@ -21,8 +21,7 @@ public class Student {
 		return obj;
 	}
 
-	@Override
-  public String toString() {
+	public String toString() {
 	  return name + "," + age + "," + tel + "," + 
 	  				email + "," + address;
   }

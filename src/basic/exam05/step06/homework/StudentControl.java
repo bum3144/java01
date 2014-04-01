@@ -1,4 +1,4 @@
-package basic.exam05.step06;
+package basic.exam05.step06.homework;
 
 import java.io.FileReader;
 import java.io.FileWriter;

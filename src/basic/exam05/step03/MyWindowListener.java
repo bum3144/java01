@@ -15,6 +15,7 @@ import java.awt.event.WindowListener;
  */
 public abstract class MyWindowListener implements WindowListener {
 
+	@Override
 	public void windowOpened(WindowEvent e) {}
 
 	@Override

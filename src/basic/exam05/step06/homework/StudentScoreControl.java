@@ -1,4 +1,4 @@
-package basic.exam05.step06;
+package basic.exam05.step06.homework;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -6,28 +6,28 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class StudentControl {
+public class StudentScoreControl {
 	static Scanner scanner;
-	public ArrayList<Student> studentList 
-												= new ArrayList<Student>();
+	public ArrayList<StudentScore> scoreList 
+												= new ArrayList<StudentScore>();
 	
-	public void add(final Student student) {
-		studentList.add(student);
+	public void add(final StudentScore score) {
+		scoreList.add(score);
 	}
 	
 	public void remove(final int no) {
-		studentList.remove(no);
+		scoreList.remove(no);
   }
 	
-	public void update(final int no, final Student s) {
-		studentList.set(no, s);
+	public void update(final int no, final StudentScore score) {
+		scoreList.set(no, score);
   }
 	
 	public void save() {
 		try {
-			FileWriter out = new FileWriter("student.data");
-			for(Student student : studentList) {
-				out.write(student.toString() + "\n");
+			FileWriter out = new FileWriter("studentscore.data");
+			for(StudentScore score : scoreList) {
+				out.write(score.toString() + "\n");
 			}
 			out.close();
 		} catch (Exception ex) {
@@ -37,11 +37,11 @@ public class StudentControl {
 	
 	public void load() {
 		try {
-			FileReader in = new FileReader("student.data");
+			FileReader in = new FileReader("studentscore.data");
 			Scanner s = new Scanner(in);
 			while(true) {
 				try {
-					studentList.add(Student.fromCSV(s.nextLine()));
+					scoreList.add(StudentScore.fromCSV(s.nextLine()));
 				} catch (NoSuchElementException ex) {
 					break;
 				}

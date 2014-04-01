@@ -31,8 +31,7 @@ public class ContentPanel extends Panel implements ActionListener{
 		btnBack.addActionListener(this);
 	}
 
-
-
+	@Override
   public void actionPerformed(ActionEvent e) {
 	  parent.changePanel(StudentMgtSystem.MENU_PANEL);
 	  

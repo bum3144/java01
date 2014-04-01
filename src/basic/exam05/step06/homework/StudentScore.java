@@ -1,4 +1,4 @@
-package basic.exam05.ex01;
+package basic.exam05.step06.homework;
 
 /* 콤마(,)로 구분된 문자열 데이터(comma seperated value; csv)로부터 
  * 인스턴스 생성하기 
