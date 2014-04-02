@@ -25,7 +25,7 @@ public class StudentControl {
 	
 	public void save() {
 		try {
-			FileWriter out = new FileWriter("student.data");
+			FileWriter out = new FileWriter("homework.data");
 			for(Student student : studentList) {
 				out.write(student.toString() + "\n");
 			}
@@ -37,7 +37,7 @@ public class StudentControl {
 	
 	public void load() {
 		try {
-			FileReader in = new FileReader("student.data");
+			FileReader in = new FileReader("homework.data");
 			Scanner s = new Scanner(in);
 			while(true) {
 				try {

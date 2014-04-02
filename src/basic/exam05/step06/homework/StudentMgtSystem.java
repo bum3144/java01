@@ -21,78 +21,63 @@ import java.awt.event.WindowEvent;
  */
 @SuppressWarnings("serial")
 public class StudentMgtSystem extends Frame {
-	public static final String MENU_PANEL = "MenuPanel";
-	public static final String STUDENT_PANEL = "StudentPanel";
-	public static final String SCORE_PANEL = "ScorePanel";
-	
-	MenuPanel menuPanel;
-	StudentPanel studentPanel;
-	ScorePanel scorePanel;
-	
-	// StateChangeListener를 구현한 익명 클래스 정의 
-	StateChangeListener stateChangeListener = new StateChangeListener() {
-		@Override
+  public static final String MENU_PANEL = "MenuPanel";
+  public static final String STUDENT_PANEL = "StudentPanel";
+ // public static final String SCORE_PANEL = "ScorePanel";
+
+  MenuPanel menuPanel;
+  StudentPanel studentPanel;
+ // ScorePanel scorePanel;
+
+  // StateChangeListener를 구현한 익명 클래스 정의
+  StateChangeListener stateChangeListener = new StateChangeListener() {
+    @Override
     public void stateChanged(StateChangeEvent e) {
-			CardLayout cardLayout = 
-					(CardLayout)StudentMgtSystem.this.getLayout();
-			if (e.stateName.equals("back")) {
-				cardLayout.show(StudentMgtSystem.this, MENU_PANEL);
-				
-			} else if (e.stateName.equals("studentPanel")) {
-				cardLayout.show(StudentMgtSystem.this, STUDENT_PANEL);
-				
-			} else if (e.stateName.equals("scorePanel")) {
-				cardLayout.show(StudentMgtSystem.this, SCORE_PANEL);
-			}
+      CardLayout cardLayout = (CardLayout) StudentMgtSystem.this.getLayout();
+      if (e.stateName.equals("back")) {
+        cardLayout.show(StudentMgtSystem.this, MENU_PANEL);
+
+      } else if (e.stateName.equals("studentPanel")) {
+        cardLayout.show(StudentMgtSystem.this, STUDENT_PANEL);
+
+      } else if (e.stateName.equals("scorePanel")) {
+     //   cardLayout.show(StudentMgtSystem.this, SCORE_PANEL);
+      }
     }
-	};
-	
-	public StudentMgtSystem() {
-		super("학생관리시스템"); 
-		setSize(800, 600);
-		
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e){
-				studentPanel.save();
-				System.exit(0);
-			};
-		});
-		
-		setLayout(new CardLayout()); // 메뉴화면,학생관리화면,점수관리화면 겹치게 함.
-		
-		menuPanel = new MenuPanel();
-		studentPanel = new StudentPanel();
-		scorePanel = new ScorePanel();
-		
-		menuPanel.addStateChangeListener(stateChangeListener);
-		studentPanel.addStateChangeListener(stateChangeListener);
-		scorePanel.addStateChangeListener(stateChangeListener);
-		
-		// CardLayout인 경우 자식 컴포넌트를 붙일 때 
-		// 이름을 함께 주어야 한다.
-		add(menuPanel, MENU_PANEL);
-		add(studentPanel, STUDENT_PANEL);
-		add(scorePanel, SCORE_PANEL);
-		
-	}
-	
-	public static void main(String[] args) {
-		StudentMgtSystem f = new StudentMgtSystem();
-		f.setVisible(true);
-	}
-	
+  };
+
+  public StudentMgtSystem() {
+    super("학생관리시스템");
+    setSize(800, 600);
+
+    addWindowListener(new WindowAdapter() {
+      public void windowClosing(WindowEvent e) {
+        studentPanel.save();
+        System.exit(0);
+      };
+    });
+
+    setLayout(new CardLayout()); // 메뉴화면,학생관리화면,점수관리화면 겹치게 함.
+
+    menuPanel = new MenuPanel();
+    studentPanel = new StudentPanel();
+  //  scorePanel = new ScorePanel();
+
+    menuPanel.addStateChangeListener(stateChangeListener);
+    studentPanel.addStateChangeListener(stateChangeListener);
+ //   scorePanel.addStateChangeListener(stateChangeListener);
+
+    // CardLayout인 경우 자식 컴포넌트를 붙일 때
+    // 이름을 함께 주어야 한다.
+    add(menuPanel, MENU_PANEL);
+    add(studentPanel, STUDENT_PANEL);
+ //   add(scorePanel, SCORE_PANEL);
+
+  }
+
+  public static void main(String[] args) {
+    StudentMgtSystem f = new StudentMgtSystem();
+    f.setVisible(true);
+  }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
